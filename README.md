@@ -1,2 +1,2 @@
 # multi-agent-cv-review
-Navaia Forge assessment project demonstrating a multi-agent workforce for CV screening and candidate evaluation.
+Multi-agent workforce that analyzes CVs, evaluates candidates, and generates hiring recommendations.
