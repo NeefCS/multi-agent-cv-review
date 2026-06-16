@@ -3,8 +3,8 @@ import os
 
 
 client = NavaiaForgeClient(
-    base_url="https://api.navaia.com", #http://localhost:8001 ، https://fareegi.navaia.sa
-    api_key = os.getenv("NAVAIA_API_KEY")
+    base_url="http://localhost:8001", #https://api.navaia.com ، https://fareegi.navaia.sa
+    api_key = os.getenv("NAVAIA_API_KEY"),
 )
 
 workforce = client.workforces.create(name = "CV review workforce", runtime_mode="claude_max",)
@@ -40,7 +40,7 @@ advisor_ag = client.agents.create(
     name = "CV advisor agent",
     role = "advisor",
     instructions = "Agent responsible for providing feedback and recommendations to candidates based on the evaluation results.",
-    model_provide = "anthropic",
+    model_provider = "anthropic",
     model_name = "sonnet",
     # model_name= "claude-sonnet-4-6",
     # model_provider = "openai",
@@ -49,14 +49,14 @@ advisor_ag = client.agents.create(
 
 
 client.workforces.edges.create(
-    workforce_id=workforce.id,
-    source_agent_id=analizer_ag.id,
-    target_agent_id=evaluator_ag.id,
+    workforce_id = workforce.id,
+    source_agent_id = analizer_ag.id,
+    target_agent_id = evaluator_ag.id,
 )
 client.workforces.edges.create(
-    workforce_id=workforce.id,
-    source_agent_id=evaluator_ag.id,
-    target_agent_id=advisor_ag.id,
+    workforce_id = workforce.id,
+    source_agent_id = evaluator_ag.id,
+    target_agent_id = advisor_ag.id,
 )
 
 
